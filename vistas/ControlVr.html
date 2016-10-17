@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+   <meta name = "viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name = "mobile-web-app-capable" content="yes">
+    <meta name = "apple-mobile-web-app-capable" content="yes">
+    <meta name = "apple-mobile-web-app-status-bar-style" content="black">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="js/socket.js"></script>
+  <script src="js/angular.js"></script>
+  <script src="angular-socket-io/socket.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/controller.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>Robot AEI - Control Cardboard</title>
+</head>
+<body>
+  <div id="contenido">
+    <div  id="Left" ><center id="direccionLeft"></center><a href="/"><button class="back2"></button></a></div>
+    <div  id="Right"><center id="direccionRight"></center><a href="/"><button class="back2"></button></a></div>
+    <img id='miImg1' width='50%' height='50%' style='float:left;clear:none;'>
+    <img id='miImg2' width='50%' height='50%' style='float:right;clear:none;'>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var websocket = io.connect("");
+    websocket.on('setFrame',proc);
+    function proc(img)
+    {
+      document.querySelector('#miImg1').src = img;
+      document.querySelector('#miImg2').src = img;
+    };
+  </script>
+  <script src="js/vr.js"></script>
+</div>
+</body>
+</html>

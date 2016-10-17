@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+	<head>
+<script src="/socket.io/socket.io.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+<!--animate-->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/animate/jquery.gsap.js"></script>
+<script src="js/animate/TweenLite.js"></script>
+<script src="js/animate/TweenMax.js"></script>
+<script src="js/animate/TimeLineMax.js"></script>
+<script src="js/animate.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<style>
+    video{display: none;}
+  </style>
+
+</head>
+<body>
+<video autoplay></video>
+<div>
+	<a href="/"><button class="back3"></button></a>
+<div id='info'>
+
+</div>
+	<div><canvas id='miCanvas' width='610' height='480'></canvas></div>
+
+</div>
+
+</body>
+<script>
+var websocket = io.connect("");
+window.URL = window.URL || window.webkitURL;
+/*
+navigator.getUserMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                     navigator.msGetUserMedia);
+   */
+navigator.getMedia = ( navigator.getUserMedia ||
+                           navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia ||
+                           navigator.msGetUserMedia);
+
+/*
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+navigator.getUserMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                     navigator.msGetUserMedia);
+*/
+
+navigator.getMedia (
+
+   // constraints
+   {
+      video: true,
+      audio: false
+   },
+
+   // successCallback
+   function(localMediaStream) {
+      //var video = document.querySelector('video');
+      //video.src = window.URL.createObjectURL(localMediaStream);
+      document.querySelector('video').src = window.URL.createObjectURL(localMediaStream);
+      document.getElementById("info").innerHTML ="Reproduciendo...";
+   },
+
+   // errorCallback
+   function(err) {
+    console.log("Ocurrió el siguiente error: " + err);
+    document.getElementById("info").innerHTML = "Ocurrió el siguiente error: " + err;
+   }
+
+);
+
+/*
+navigator.getUserMedia({audio: false, video:true},function(vid){
+      document.querySelector('video').src = window.URL.createObjectURL(vid);
+    });
+*/
+
+   window.requestAnimFrame = (function(callback){
+      return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      function(callback){
+        window.setTimeout(callback, 1000 / 100);
+      };
+    })();
+
+    function dFrame(ctx,video,canvas)
+    {
+      ctx.drawImage(video,0,0);
+      var dataURL = canvas.toDataURL('image/jpeg',0.5);
+      if(1!=0) websocket.emit('newFrame',dataURL);
+      requestAnimFrame(function(){
+        setTimeout(function(){dFrame(ctx,video,canvas);},50)
+      });
+    }
+    window.addEventListener('load',init);
+    function init()
+    {
+      var canvas = document.querySelector('#miCanvas');
+      var video = document.querySelector('video');
+      var ctx = canvas.getContext('2d');
+      dFrame(ctx,video,canvas);
+    }
+
+    function nom_div(div)
+  {
+    return document.getElementById(div);
+  }
+</script>
+</html>

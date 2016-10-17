@@ -1,0 +1,26 @@
+{
+  "name": "robotaei",
+  "version": "1.0.0",
+  "description": "Robot para desminado",
+  "main": "server.js",
+  "dependencies": {
+    "johnny-five": "^0.9.29",
+    "consolidate": "^0.14.0",
+    "socket.io": "^1.4.5",
+    "express": "^4.13.3",
+    "raspi-io": "^5.4.0",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "johnny-five",
+    "Arduino",
+    "js"
+  ],
+  "author": "Franklyn Lombana",
+  "license": "ISC"
+}

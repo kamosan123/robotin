@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="js/socket.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="angular-socket-io/socket.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <!--animate-->
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/animate/jquery.gsap.js"></script>
+  <script src="js/animate/TweenLite.js"></script>
+  <script src="js/animate/TweenMax.js"></script>
+  <script src="js/animate.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Robot AEI</title>
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1 class="titulo">Robot AEI</h1></center>
+    <p>Vehículo Robótico Controlado De Forma Inalambrica Por Medio De Un Dispositivo Movil Para Desminado Y Desactivación De Artefactos Explosivos Improvisados </p>
+    <center>
+        <h2>Menú de opciones</h2></center>
+    <div ng-controller="indexController">
+        <br>
+        <center>
+            <div>
+                <!--<button id='ControlManual'  ng-click="" class="btn btn-info" name="boton"></button>-->
+                <a type="button" class="btn btn-positive btn-lg" href="/manual">Control Manual</a><br>
+                <a type="button" class="btn btn-primary btn-lg" href="/vr">Control CardBoard</a><br>
+                <a type="button" class="btn btn-info btn-lg" href="/video">Video</a><br>
+            </div>
+        </center>
+    </div>
+</body>
+
+</html>
